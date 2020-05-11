@@ -47,27 +47,16 @@
     "npm": ">= 4.0.0"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
+    "{src|test}/**/*.js": [
+      "npm run lint:fix",
       "git add"
     ]
   },
-
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
       "pre-push": "npm run lint"
     }
-  },
-  "lint-staged": {
-    "{src|test}/**/*.js": [
-      "npm run lint:fix",
-      "git add"
-    ]
   },
   "eslintConfig": {
     "extends": [
