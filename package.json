@@ -8,6 +8,12 @@
     "email": "vinay.hpatil@gmail.com",
     "url": ""
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "semantic-release": "semantic-release",
+    "lint": "eslint **/*.js",
+    "lint:fix": "npm run lint -- --fix"
+  },
   "files": [
     "lib"
   ],
@@ -46,17 +52,21 @@
   "engines": {
     "npm": ">= 4.0.0"
   },
-  "lint-staged": {
-    "{src|test}/**/*.js": [
-      "npm run lint:fix",
-      "git add"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
       "pre-push": "npm run lint"
     }
+  },
+  "lint-staged": {
+    "{src|test}/**/*.js": [
+      "npm run lint:fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -73,13 +83,6 @@
     "plugins": [
       "prettier"
     ]
-  },
-  "scripts": {
-    "pretest": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "semantic-release": "semantic-release",
-    "lint": "eslint **/*.js",
-    "lint:fix": "npm run lint -- --fix"
   },
   "repository": "patilvinay/kalpa-inquirer",
   "jest": {
